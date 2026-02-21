@@ -1,0 +1,163 @@
+{
+  "expo": {
+    "name": "Betly",
+    "slug": "betly",
+    "version": "1.2.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "betly",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D0D0D"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "fr.betly.app",
+      "buildNumber": "26",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Betly needs camera access to scan QR codes for quick login.",
+        "NSPhotoLibraryUsageDescription": "Betly needs photo library access to save shared content.",
+        "UIBackgroundModes": ["fetch", "remote-notification"],
+        "ITSAppUsesNonExemptEncryption": false,
+        "LSApplicationQueriesSchemes": [
+          "https",
+          "itms-apps",
+          "tel"
+        ],
+        "CFBundleAllowMixedLocalizations": true,
+        "CFBundleDevelopmentRegion": "fr"
+      },
+      "associatedDomains": [
+        "applinks:betly.fr",
+        "applinks:www.betly.fr",
+        "applinks:api.betly.fr"
+      ],
+      "usesAppleSignIn": true,
+            "entitlements": {
+        "aps-environment": "production",
+        "com.apple.developer.in-app-payments": [
+          "merchant.fr.betly.app"
+        ]
+      }
+    },
+    "android": {
+      "package": "fr.betly.app",
+      "versionCode": 26,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#0D0D0D"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.VIBRATE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.CAMERA",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "com.android.vending.BILLING"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "betly.fr",
+              "pathPrefix": "/"
+            },
+            {
+              "scheme": "https",
+              "host": "www.betly.fr",
+              "pathPrefix": "/"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ],
+      "googleServicesFile": "./google-services.json",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=fr.betly.app"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-apple-authentication",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#00D166",
+          "sounds": ["./assets/sounds/notification.wav"]
+        }
+      ],
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "production"
+        }
+      ],
+            [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.114247778518-9jkoc6hbrufm5c2evndovu0041hr70ni"
+        }
+      ],
+      [
+        "expo-tracking-transparency",
+        {
+          "userTrackingPermission": "Cette application utilise le suivi pour améliorer votre expérience et personnaliser les contenus."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "15.1",
+            "useFrameworks": "static"
+          },
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "minSdkVersion": 24,
+            "buildToolsVersion": "34.0.0"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "betly-app"
+      },
+      "oneSignalAppId": "13a823e7-8b35-4cc6-b8e2-8b96b7904303",
+      "apiBaseUrl": "https://api.betly.fr",
+      "privacyPolicyUrl": "https://betly.fr/privacy",
+      "termsOfServiceUrl": "https://betly.fr/terms",
+      "supportEmail": "support@betly.fr",
+      "appStoreUrl": "https://apps.apple.com/app/betly/id1234567890"
+    },
+    "owner": "betly",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/betly-app",
+      "fallbackToCacheTimeout": 30000
+    },
+    "locales": {
+      "fr": "./locales/fr.json"
+    }
+  }
+}

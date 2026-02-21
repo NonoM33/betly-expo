@@ -1,0 +1,7 @@
+{
+  "CFBundleDisplayName": "Betly",
+  "CFBundleName": "Betly",
+  "NSCameraUsageDescription": "Betly a besoin d'accéder à la caméra pour scanner les QR codes.",
+  "NSPhotoLibraryUsageDescription": "Betly a besoin d'accéder à la photothèque pour sauvegarder du contenu partagé.",
+  "NSUserTrackingUsageDescription": "Cette application utilise le suivi pour améliorer votre expérience et personnaliser les contenus."
+}
