@@ -15,7 +15,7 @@ interface MatchesState {
   error: string | null;
 
   // Live refresh
-  liveRefreshInterval: NodeJS.Timeout | null;
+  liveRefreshInterval: ReturnType<typeof setInterval> | null;
 
   // Actions
   loadMatches: (date?: Date) => Promise<void>;

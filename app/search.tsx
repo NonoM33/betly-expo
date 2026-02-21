@@ -28,7 +28,7 @@ export default function SearchScreen() {
   } = useSearchStore();
 
   const [inputValue, setInputValue] = useState(query);
-  const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [debounceTimeout, setDebounceTimeout] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     loadRecentSearches();

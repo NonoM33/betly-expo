@@ -29,7 +29,7 @@ export function AIChatSheet({ match, onClose }: AIChatSheetProps) {
   const {
     messages,
     isLoading,
-    usage,
+    tokenUsage,
     sendMessage,
     loadHistory,
     loadUsage,
@@ -78,19 +78,19 @@ export function AIChatSheet({ match, onClose }: AIChatSheetProps) {
         </View>
 
         {/* Token usage */}
-        {usage && (
+        {tokenUsage && (
           <View style={styles.usageBar}>
             <View style={styles.usageInfo}>
               <Ionicons name="flash" size={14} color={colors.accent} />
               <Text style={styles.usageText}>
-                {usage.remaining.toLocaleString()} tokens restants
+                {tokenUsage.remaining.toLocaleString()} tokens restants
               </Text>
             </View>
             <View style={styles.usageProgress}>
               <View
                 style={[
                   styles.usageProgressFill,
-                  { width: `${(usage.remaining / usage.limit) * 100}%` },
+                  { width: `${(tokenUsage.remaining / tokenUsage.limit) * 100}%` },
                 ]}
               />
             </View>
@@ -169,7 +169,7 @@ export function AIChatSheet({ match, onClose }: AIChatSheetProps) {
         <AIChatInput
           onSend={handleSend}
           isLoading={isLoading}
-          tokensAvailable={usage?.remaining || 0}
+          tokensAvailable={tokenUsage?.remaining || 0}
         />
       </KeyboardAvoidingView>
     </View>

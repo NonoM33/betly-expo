@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle, Pressable } from 'react-native';
+import { View, StyleSheet, ViewStyle, Pressable, StyleProp } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Colors, BorderRadius, Spacing } from '../../constants/theme';
+import { Colors, BorderRadius, Spacing, GradientColors } from '../../constants/theme';
 
 interface CardProps {
   children: React.ReactNode;
   variant?: 'default' | 'elevated' | 'gradient' | 'outlined';
   padding?: 'none' | 'sm' | 'md' | 'lg';
-  gradientColors?: string[];
+  gradientColors?: GradientColors;
   onPress?: () => void;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -30,7 +30,7 @@ export const Card: React.FC<CardProps> = ({
   if (variant === 'gradient') {
     const content = (
       <LinearGradient
-        colors={gradientColors || [Colors.backgroundSecondary, Colors.backgroundTertiary]}
+        colors={gradientColors || [Colors.backgroundSecondary, Colors.backgroundTertiary] as GradientColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[styles.base, styles.gradient, styles[`padding${padding.charAt(0).toUpperCase() + padding.slice(1)}` as keyof typeof styles], style]}

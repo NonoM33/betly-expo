@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Colors, BorderRadius } from '../../constants/theme';
+import { Colors, BorderRadius, GradientColors } from '../../constants/theme';
 
 interface BadgeProps {
   text: string;
   variant?: 'default' | 'success' | 'warning' | 'error' | 'info' | 'live' | 'premium' | 'gradient';
   size?: 'sm' | 'md' | 'lg';
-  gradientColors?: string[];
+  gradientColors?: GradientColors;
   icon?: React.ReactNode;
   style?: ViewStyle;
 }
@@ -36,7 +36,7 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === 'gradient') {
     return (
       <LinearGradient
-        colors={gradientColors || [Colors.accentPrimary, Colors.gradientEmerald]}
+        colors={gradientColors || [Colors.accentPrimary, Colors.gradientEmerald] as GradientColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.base, styles[size], styles.gradient, style]}
@@ -72,13 +72,13 @@ export const ConfidenceBadge: React.FC<{ confidence: number; style?: ViewStyle }
   confidence,
   style,
 }) => {
-  let colors: string[];
+  let colors: GradientColors;
   if (confidence >= 75) {
-    colors = [Colors.accentPrimary, Colors.gradientEmerald];
+    colors = [Colors.accentPrimary, Colors.gradientEmerald] as GradientColors;
   } else if (confidence >= 60) {
-    colors = [Colors.gradientEmerald, Colors.gradientCyan];
+    colors = [Colors.gradientEmerald, Colors.gradientCyan] as GradientColors;
   } else {
-    colors = [Colors.info, Colors.gradientCyan];
+    colors = [Colors.info, Colors.gradientCyan] as GradientColors;
   }
 
   return (

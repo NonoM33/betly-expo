@@ -58,13 +58,16 @@ export const Colors = {
   shadowRed: 'rgba(239, 68, 68, 0.2)',
 } as const;
 
-// Gradient presets
+// Gradient color tuple type for LinearGradient compatibility
+export type GradientColors = readonly [string, string, ...string[]];
+
+// Gradient presets - Using tuple types for LinearGradient compatibility
 export const Gradients = {
-  predictions: [Colors.accentPrimary, Colors.gradientEmerald],
-  premium: [Colors.accentGold, Colors.gradientOrange],
-  vip: [Colors.gradientPurple, Colors.gradientPink],
-  live: [Colors.error, Colors.gradientOrange],
-  valueBets: [Colors.info, Colors.gradientCyan],
+  predictions: [Colors.accentPrimary, Colors.gradientEmerald] as GradientColors,
+  premium: [Colors.accentGold, Colors.gradientOrange] as GradientColors,
+  vip: [Colors.gradientPurple, Colors.gradientPink] as GradientColors,
+  live: [Colors.error, Colors.gradientOrange] as GradientColors,
+  valueBets: [Colors.info, Colors.gradientCyan] as GradientColors,
   appleIntelligence: [
     Colors.aiCyan,
     Colors.aiBlue,
@@ -72,9 +75,9 @@ export const Gradients = {
     Colors.aiPurple,
     Colors.aiPink,
     Colors.aiOrange,
-  ],
-  aiSubtle: [Colors.aiCyan, Colors.aiViolet, Colors.aiPink],
-} as const;
+  ] as GradientColors,
+  aiSubtle: [Colors.aiCyan, Colors.aiViolet, Colors.aiPink] as GradientColors,
+};
 
 // Spacing
 export const Spacing = {

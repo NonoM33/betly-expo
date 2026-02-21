@@ -93,18 +93,18 @@ export const useTipsStore = create<TipsState>((set, get) => ({
 
       // Update the tip in the appropriate list
       const updateTipList = (tips: BettingTip[]) =>
-        tips.map((t) => (t.id === id ? { ...t, isUnlocked: true, ...tip } : t));
+        tips.map((t) => (t.id === id ? { ...t, ...tip, isUnlocked: true } : t));
 
       set({
         strongPicks: updateTipList(get().strongPicks),
         moderatePicks: updateTipList(get().moderatePicks),
         tipOfTheDay:
           get().tipOfTheDay?.id === id
-            ? { ...get().tipOfTheDay!, isUnlocked: true, ...tip }
+            ? { ...get().tipOfTheDay!, ...tip, isUnlocked: true }
             : get().tipOfTheDay,
         selectedTip:
           get().selectedTip?.id === id
-            ? { ...get().selectedTip!, isUnlocked: true, ...tip }
+            ? { ...get().selectedTip!, ...tip, isUnlocked: true }
             : get().selectedTip,
       });
 

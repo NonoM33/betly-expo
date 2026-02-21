@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
-import { Colors, BorderRadius, ButtonHeight, AnimationDuration } from '../../constants/theme';
+import { Colors, BorderRadius, ButtonHeight, AnimationDuration, GradientColors } from '../../constants/theme';
 
 interface ButtonProps {
   title: string;
@@ -21,7 +21,7 @@ interface ButtonProps {
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   fullWidth?: boolean;
-  gradientColors?: string[];
+  gradientColors?: GradientColors;
   style?: ViewStyle;
   textStyle?: TextStyle;
   haptic?: boolean;
@@ -93,7 +93,7 @@ export const Button: React.FC<ButtonProps> = ({
         style={[fullWidth && styles.fullWidth, style]}
       >
         <LinearGradient
-          colors={gradientColors || [Colors.accentPrimary, Colors.gradientEmerald]}
+          colors={gradientColors || [Colors.accentPrimary, Colors.gradientEmerald] as GradientColors}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={[styles.base, styles[size], styles.gradient]}

@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle, Animated, Easing } from 'react-native';
+import { View, StyleSheet, ViewStyle, Animated, Easing, DimensionValue } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, BorderRadius } from '../../constants/theme';
 
 interface ShimmerProps {
-  width?: number | string;
+  width?: DimensionValue;
   height?: number;
   borderRadius?: number;
   style?: ViewStyle;

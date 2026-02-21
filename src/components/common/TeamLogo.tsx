@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle } from 'react-native';
+import { View, StyleSheet, ViewStyle, ImageStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, TeamLogoSize, BorderRadius } from '../../constants/theme';
@@ -8,7 +8,7 @@ interface TeamLogoProps {
   uri?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   fallbackIcon?: boolean;
-  style?: ViewStyle;
+  style?: ImageStyle;
 }
 
 export const TeamLogo: React.FC<TeamLogoProps> = ({
