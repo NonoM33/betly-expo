@@ -8,7 +8,7 @@ import {
   TextStyle,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as Haptics from 'expo-haptics';
+import * as Haptics from '../../utils/haptics';
 import { Colors, BorderRadius, ButtonHeight, AnimationDuration, GradientColors } from '../../constants/theme';
 
 interface ButtonProps {

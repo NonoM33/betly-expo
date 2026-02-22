@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-na
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
+import * as Haptics from '../../src/utils/haptics';
 import { Colors, Gradients, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboardingStore, useAuthStore } from '../../src/stores';
 import { TeamSelector } from '../../src/components/onboarding/TeamSelector';

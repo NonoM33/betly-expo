@@ -1,30 +1,18 @@
-import { Platform } from 'react-native';
+/**
+ * Native storage implementation using expo-secure-store
+ * For web builds, Metro/Expo automatically uses storage.web.ts instead
+ */
 
-let SecureStore: any = null;
-
-if (Platform.OS !== 'web') {
-  SecureStore = require('expo-secure-store');
-}
+import * as SecureStore from 'expo-secure-store';
 
 export async function getItemAsync(key: string): Promise<string | null> {
-  if (Platform.OS === 'web') {
-    return localStorage.getItem(key);
-  }
-  return SecureStore?.getItemAsync(key) ?? null;
+  return SecureStore.getItemAsync(key);
 }
 
 export async function setItemAsync(key: string, value: string): Promise<void> {
-  if (Platform.OS === 'web') {
-    localStorage.setItem(key, value);
-    return;
-  }
-  await SecureStore?.setItemAsync(key, value);
+  await SecureStore.setItemAsync(key, value);
 }
 
 export async function deleteItemAsync(key: string): Promise<void> {
-  if (Platform.OS === 'web') {
-    localStorage.removeItem(key);
-    return;
-  }
-  await SecureStore?.deleteItemAsync(key);
+  await SecureStore.deleteItemAsync(key);
 }
