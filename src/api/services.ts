@@ -74,15 +74,18 @@ export const authService = {
 export const matchesService = {
   async getMatches(date?: string): Promise<MatchWithOdds[]> {
     const url = date ? Endpoints.matchesByDate(date) : Endpoints.MATCHES;
-    return get(url);
+    const res: any = await get(url);
+    return res?.data ?? res ?? [];
   },
 
   async getMatchById(id: number): Promise<MatchDetails> {
-    return get(Endpoints.matchById(id));
+    const res: any = await get(Endpoints.matchById(id));
+    return res?.data ?? res;
   },
 
   async getLiveMatches(): Promise<MatchWithOdds[]> {
-    return get(Endpoints.MATCHES_LIVE);
+    const res: any = await get(Endpoints.MATCHES_LIVE);
+    return res?.data ?? res ?? [];
   },
 
   async getH2H(team1Id: number, team2Id: number): Promise<H2HData> {
@@ -108,19 +111,23 @@ export const predictionsService = {
 // ============ TIPS SERVICES ============
 export const tipsService = {
   async getTips(): Promise<TipsResponse> {
-    return get(Endpoints.TIPS);
+    const res: any = await get(Endpoints.TIPS);
+    return res?.data ?? res;
   },
 
   async getDailyTips(): Promise<BettingTip[]> {
-    return get(Endpoints.TIPS_DAILY);
+    const res: any = await get(Endpoints.TIPS_DAILY);
+    return res?.data ?? res ?? [];
   },
 
   async getMatchDuJour(): Promise<MatchDuJour> {
-    return get(Endpoints.MATCH_DU_JOUR);
+    const res: any = await get(Endpoints.MATCH_DU_JOUR);
+    return res?.data ?? res;
   },
 
   async getTipById(id: string): Promise<BettingTip> {
-    return get(Endpoints.tipById(id));
+    const res: any = await get(Endpoints.tipById(id));
+    return res?.data ?? res;
   },
 
   async unlockTip(id: string): Promise<BettingTip> {
