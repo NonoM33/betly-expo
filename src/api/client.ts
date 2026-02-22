@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
-import * as SecureStore from 'expo-secure-store';
+import { getItemAsync, setItemAsync, deleteItemAsync } from '../utils/storage';
 import { Config, StorageKeys } from '../constants/config';
 import { ApiError } from '../types';
 
@@ -16,7 +16,7 @@ const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.request.use(
   async (config) => {
     try {
-      const token = await SecureStore.getItemAsync(StorageKeys.AUTH_TOKEN);
+      const token = await getItemAsync(StorageKeys.AUTH_TOKEN);
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -46,8 +46,8 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
 
       // Clear token and redirect to login
-      await SecureStore.deleteItemAsync(StorageKeys.AUTH_TOKEN);
-      await SecureStore.deleteItemAsync(StorageKeys.USER_DATA);
+      await deleteItemAsync(StorageKeys.AUTH_TOKEN);
+      await deleteItemAsync(StorageKeys.USER_DATA);
 
       // You could emit an event here to trigger logout in the app
       // EventEmitter.emit('auth:logout');
@@ -202,15 +202,15 @@ export async function del<T>(url: string, config?: AxiosRequestConfig): Promise<
 
 // Token management
 export async function setAuthToken(token: string): Promise<void> {
-  await SecureStore.setItemAsync(StorageKeys.AUTH_TOKEN, token);
+  await setItemAsync(StorageKeys.AUTH_TOKEN, token);
 }
 
 export async function getAuthToken(): Promise<string | null> {
-  return await SecureStore.getItemAsync(StorageKeys.AUTH_TOKEN);
+  return await getItemAsync(StorageKeys.AUTH_TOKEN);
 }
 
 export async function clearAuthToken(): Promise<void> {
-  await SecureStore.deleteItemAsync(StorageKeys.AUTH_TOKEN);
+  await deleteItemAsync(StorageKeys.AUTH_TOKEN);
 }
 
 export async function isAuthenticated(): Promise<boolean> {

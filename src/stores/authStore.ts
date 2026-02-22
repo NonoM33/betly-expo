@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import * as SecureStore from 'expo-secure-store';
+import { getItemAsync, setItemAsync, deleteItemAsync } from '../utils/storage';
 import { StorageKeys } from '../constants/config';
 import { authService } from '../api/services';
 import { setAuthToken, clearAuthToken } from '../api/client';
@@ -42,7 +42,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       set({ isLoading: true, error: null });
 
-      const token = await SecureStore.getItemAsync(StorageKeys.AUTH_TOKEN);
+      const token = await getItemAsync(StorageKeys.AUTH_TOKEN);
 
       if (token) {
         try {
@@ -51,7 +51,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         } catch (error) {
           // Token is invalid, clear it
           await clearAuthToken();
-          await SecureStore.deleteItemAsync(StorageKeys.USER_DATA);
+          await deleteItemAsync(StorageKeys.USER_DATA);
         }
       }
     } catch (error) {
@@ -67,7 +67,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       const response = await authService.loginWithGoogle(idToken);
       await setAuthToken(response.token);
-      await SecureStore.setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
+      await setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
 
       set({ user: response.user, isAuthenticated: true });
     } catch (error: any) {
@@ -84,7 +84,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       const response = await authService.loginWithApple(identityToken, authorizationCode, user);
       await setAuthToken(response.token);
-      await SecureStore.setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
+      await setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
 
       set({ user: response.user, isAuthenticated: true });
     } catch (error: any) {
@@ -101,7 +101,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       const response = await authService.login(email, password);
       await setAuthToken(response.token);
-      await SecureStore.setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
+      await setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
 
       set({ user: response.user, isAuthenticated: true });
     } catch (error: any) {
@@ -118,7 +118,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       const response = await authService.register(email, password, displayName);
       await setAuthToken(response.token);
-      await SecureStore.setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
+      await setItemAsync(StorageKeys.USER_DATA, JSON.stringify(response.user));
 
       set({ user: response.user, isAuthenticated: true });
     } catch (error: any) {
@@ -141,7 +141,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       }
 
       await clearAuthToken();
-      await SecureStore.deleteItemAsync(StorageKeys.USER_DATA);
+      await deleteItemAsync(StorageKeys.USER_DATA);
 
       set({ user: null, isAuthenticated: false });
     } catch (error: any) {
@@ -154,7 +154,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   refreshUser: async () => {
     try {
       const user = await authService.getCurrentUser();
-      await SecureStore.setItemAsync(StorageKeys.USER_DATA, JSON.stringify(user));
+      await setItemAsync(StorageKeys.USER_DATA, JSON.stringify(user));
       set({ user });
     } catch (error) {
       console.error('Failed to refresh user:', error);
