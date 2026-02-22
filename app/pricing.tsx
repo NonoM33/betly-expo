@@ -124,7 +124,7 @@ const PlanCard: React.FC<{
           <View style={styles.priceContainer}>
             {isPaid && <Text style={[styles.priceCurrency, plan.popular && styles.pricePopular]}>€</Text>}
             <Text style={[styles.planPrice, plan.popular && styles.pricePopular]}>
-              {isPaid ? plan.price.toFixed(2) : 'Free'}
+              {isPaid ? (plan.price ?? 0).toFixed(2) : 'Free'}
             </Text>
             {isPaid && <Text style={[styles.pricePeriod, plan.popular && styles.pricePopular]}>/{plan.period}</Text>}
           </View>

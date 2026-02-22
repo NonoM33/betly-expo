@@ -92,14 +92,14 @@ const PortfolioCard: React.FC<{ portfolio: Portfolio }> = ({ portfolio }) => (
   <Card variant="gradient" gradientColors={Gradients.predictions} padding="lg">
     <View style={styles.portfolioHeader}>
       <Text style={styles.portfolioTitle}>Your Performance</Text>
-      <Badge text={portfolio.profit >= 0 ? 'Profitable' : 'Learning'} variant={portfolio.profit >= 0 ? 'success' : 'warning'} size="sm" />
+      <Badge text={(portfolio.profit ?? 0) >= 0 ? 'Profitable' : 'Learning'} variant={(portfolio.profit ?? 0) >= 0 ? 'success' : 'warning'} size="sm" />
     </View>
     <View style={styles.portfolioStats}>
-      <Text style={styles.portfolioMainValue}>{portfolio.profit >= 0 ? '+' : ''}{(portfolio.profit * 100).toFixed(1)}%</Text>
+      <Text style={styles.portfolioMainValue}>{(portfolio.profit ?? 0) >= 0 ? '+' : ''}{((portfolio.profit ?? 0) * 100).toFixed(1)}%</Text>
       <Text style={styles.portfolioMainLabel}>Total ROI</Text>
     </View>
     <View style={styles.portfolioGrid}>
-      <PortfolioStatItem label="Win Rate" value={`${(portfolio.winRate * 100).toFixed(0)}%`} />
+      <PortfolioStatItem label="Win Rate" value={`${((portfolio.winRate ?? 0) * 100).toFixed(0)}%`} />
       <PortfolioStatItem label="Total" value={portfolio.totalBets.toString()} />
       <PortfolioStatItem label="Won" value={portfolio.wonBets.toString()} color={Colors.success} />
       <PortfolioStatItem label="Lost" value={portfolio.lostBets.toString()} color={Colors.error} />
@@ -131,9 +131,9 @@ const TicketCard: React.FC<{ ticket: Ticket }> = ({ ticket }) => {
         </View>
       </View>
       <View style={styles.ticketFooter}>
-        <View style={styles.ticketFooterItem}><Text style={styles.ticketFooterLabel}>Odds</Text><Text style={styles.ticketFooterValue}>{ticket.totalOdds.toFixed(2)}</Text></View>
-        <View style={styles.ticketFooterItem}><Text style={styles.ticketFooterLabel}>Stake</Text><Text style={styles.ticketFooterValue}>€{ticket.stake.toFixed(2)}</Text></View>
-        <View style={styles.ticketFooterItem}><Text style={styles.ticketFooterLabel}>Potential</Text><Text style={[styles.ticketFooterValue, styles.ticketPotential]}>€{ticket.potentialWin.toFixed(2)}</Text></View>
+        <View style={styles.ticketFooterItem}><Text style={styles.ticketFooterLabel}>Odds</Text><Text style={styles.ticketFooterValue}>{(ticket.totalOdds ?? 0).toFixed(2)}</Text></View>
+        <View style={styles.ticketFooterItem}><Text style={styles.ticketFooterLabel}>Stake</Text><Text style={styles.ticketFooterValue}>€{(ticket.stake ?? 0).toFixed(2)}</Text></View>
+        <View style={styles.ticketFooterItem}><Text style={styles.ticketFooterLabel}>Potential</Text><Text style={[styles.ticketFooterValue, styles.ticketPotential]}>€{(ticket.potentialWin ?? 0).toFixed(2)}</Text></View>
       </View>
     </Card>
   );

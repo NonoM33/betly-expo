@@ -20,7 +20,7 @@ export function TicketSelection({ selection, onRemove }: TicketSelectionProps) {
           <Text style={styles.betType}>{selection.bet}</Text>
         </View>
         <View style={styles.oddsContainer}>
-          <Text style={styles.odds}>{selection.odds.toFixed(2)}</Text>
+          <Text style={styles.odds}>{(selection.odds ?? 0).toFixed(2)}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.removeButton} onPress={onRemove}>

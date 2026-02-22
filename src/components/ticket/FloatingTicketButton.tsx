@@ -57,7 +57,7 @@ export function FloatingTicketButton({ onPress }: FloatingTicketButtonProps) {
         >
           <Ionicons name="receipt" size={20} color={colors.white} />
           <Text style={styles.text}>
-            {count} pari{count > 1 ? 's' : ''} • {totalOdds.toFixed(2)}
+            {count} pari{count > 1 ? 's' : ''} • {(totalOdds ?? 0).toFixed(2)}
           </Text>
         </LinearGradient>
       </TouchableOpacity>

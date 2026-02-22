@@ -73,7 +73,7 @@ export const TipCard: React.FC<TipCardProps> = ({
           <View style={styles.featuredFooter}>
             <View style={styles.oddsInfo}>
               <Text style={styles.oddsLabel}>Odds</Text>
-              <Text style={styles.oddsValue}>{tip.odds.toFixed(2)}</Text>
+              <Text style={styles.oddsValue}>{(tip.odds ?? 0).toFixed(2)}</Text>
             </View>
             {!tip.isUnlocked && onUnlock && (
               <Button
@@ -128,13 +128,13 @@ export const TipCard: React.FC<TipCardProps> = ({
               <View style={styles.detailsRow}>
                 <View style={styles.detailItem}>
                   <Text style={styles.detailLabel}>Odds</Text>
-                  <Text style={styles.detailValue}>{tip.odds.toFixed(2)}</Text>
+                  <Text style={styles.detailValue}>{(tip.odds ?? 0).toFixed(2)}</Text>
                 </View>
                 {tip.ev && tip.ev > 0 && (
                   <View style={styles.detailItem}>
                     <Text style={styles.detailLabel}>EV</Text>
                     <Text style={[styles.detailValue, styles.evPositive]}>
-                      +{(tip.ev * 100).toFixed(1)}%
+                      +{((tip.ev ?? 0) * 100).toFixed(1)}%
                     </Text>
                   </View>
                 )}

@@ -51,7 +51,7 @@ export function TicketProposalCard({ proposal, matchId }: TicketProposalCardProp
           </View>
           <View style={styles.oddsContainer}>
             <Text style={styles.oddsLabel}>Cote:</Text>
-            <Text style={styles.oddsValue}>{proposal.totalOdds.toFixed(2)}</Text>
+            <Text style={styles.oddsValue}>{(proposal.totalOdds ?? 0).toFixed(2)}</Text>
           </View>
         </View>
 
@@ -65,7 +65,7 @@ export function TicketProposalCard({ proposal, matchId }: TicketProposalCardProp
                 </Text>
                 <Text style={styles.selectionBet}>{selection.bet}</Text>
               </View>
-              <Text style={styles.selectionOdds}>{selection.odds.toFixed(2)}</Text>
+              <Text style={styles.selectionOdds}>{(selection.odds ?? 0).toFixed(2)}</Text>
             </View>
           ))}
         </View>

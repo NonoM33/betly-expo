@@ -135,7 +135,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({
 const OddsPill: React.FC<{ label: string; value: number }> = ({ label, value }) => (
   <View style={pillStyles.container}>
     <Text style={pillStyles.label}>{label}</Text>
-    <Text style={pillStyles.value}>{value.toFixed(2)}</Text>
+    <Text style={pillStyles.value}>{(value ?? 0).toFixed(2)}</Text>
   </View>
 );
 

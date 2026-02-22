@@ -171,7 +171,7 @@ const MessageBubble: React.FC<{ message: AIChatMessage }> = ({ message }) => {
         {message.ticketProposal && (
           <Card variant="outlined" padding="md" style={styles.ticketProposal}>
             <Text style={styles.ticketProposalTitle}>Suggested Ticket</Text>
-            <Text style={styles.ticketProposalOdds}>Total Odds: {message.ticketProposal.totalOdds.toFixed(2)}</Text>
+            <Text style={styles.ticketProposalOdds}>Total Odds: {(message.ticketProposal?.totalOdds ?? 0).toFixed(2)}</Text>
             <View style={styles.ticketActions}>
               <Button title="Accept" onPress={() => {}} variant="primary" size="sm" />
               <Button title="Decline" onPress={() => {}} variant="outline" size="sm" />

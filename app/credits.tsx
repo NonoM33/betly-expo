@@ -126,7 +126,7 @@ const CreditPackCard: React.FC<{ pack: CreditPack; onPress: () => void }> = ({ p
     {pack.bonus && pack.bonus > 0 && (
       <Badge text={`+${pack.bonus} bonus`} variant="success" size="sm" />
     )}
-    <Text style={styles.packPrice}>{pack.currency === 'EUR' ? '€' : '$'}{pack.price.toFixed(2)}</Text>
+    <Text style={styles.packPrice}>{pack.currency === 'EUR' ? '€' : '$'}{(pack.price ?? 0).toFixed(2)}</Text>
   </Pressable>
 );
 

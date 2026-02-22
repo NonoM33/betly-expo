@@ -145,14 +145,14 @@ export default function AIProofScreen() {
                 )}
                 {renderStatCard(
                   'Taux de réussite',
-                  stats.winRate.toFixed(1),
+                  (stats.winRate ?? 0).toFixed(1),
                   'trending-up',
                   Colors.accentPrimary,
                   '%'
                 )}
                 {renderStatCard(
                   'ROI',
-                  `+${stats.roi.toFixed(1)}`,
+                  `+${(stats.roi ?? 0).toFixed(1)}`,
                   'cash',
                   Colors.accentGold,
                   '%'

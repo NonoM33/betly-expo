@@ -61,7 +61,7 @@ export default function ValueBetsScreen() {
       <View style={styles.cardHeader}>
         <View style={styles.valueBadge}>
           <Ionicons name="trending-up" size={14} color={Colors.textPrimary} />
-          <Text style={styles.valueText}>+{(item.value * 100).toFixed(1)}%</Text>
+          <Text style={styles.valueText}>+{((item.value ?? 0) * 100).toFixed(1)}%</Text>
         </View>
         <View style={styles.confidenceBadge}>
           <Text style={styles.confidenceText}>{item.confidence}%</Text>
@@ -78,12 +78,12 @@ export default function ValueBetsScreen() {
       <View style={styles.oddsRow}>
         <View style={styles.oddsItem}>
           <Text style={styles.oddsLabel}>Cote bookmaker</Text>
-          <Text style={styles.oddsValue}>{item.bookmakerOdds.toFixed(2)}</Text>
+          <Text style={styles.oddsValue}>{(item.bookmakerOdds ?? 0).toFixed(2)}</Text>
         </View>
         <Ionicons name="arrow-forward" size={16} color={Colors.textMuted} />
         <View style={styles.oddsItem}>
           <Text style={styles.oddsLabel}>Vraie cote</Text>
-          <Text style={styles.trueOddsValue}>{item.trueOdds.toFixed(2)}</Text>
+          <Text style={styles.trueOddsValue}>{(item.trueOdds ?? 0).toFixed(2)}</Text>
         </View>
       </View>
 

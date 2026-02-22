@@ -192,17 +192,23 @@ const SectionHeader: React.FC<{ title: string; icon: keyof typeof Ionicons.glyph
   </View>
 );
 
-const StatsCard: React.FC<{ stats: any }> = ({ stats }) => (
-  <Card variant="gradient" gradientColors={['#1a1a2e', '#16213e']} padding="md">
-    <View style={styles.statsContainer}>
-      <StatItem label="Win Rate" value={`${(stats.winRate * 100).toFixed(0)}%`} color={Colors.accentPrimary} />
-      <View style={styles.statsDivider} />
-      <StatItem label="Avg Odds" value={stats.avgOdds.toFixed(2)} />
-      <View style={styles.statsDivider} />
-      <StatItem label="ROI" value={`${stats.profit > 0 ? '+' : ''}${(stats.profit * 100).toFixed(0)}%`} color={stats.profit > 0 ? Colors.accentPrimary : Colors.error} />
-    </View>
-  </Card>
-);
+const StatsCard: React.FC<{ stats: any }> = ({ stats }) => {
+  if (!stats) return null;
+  const winRate = stats.winRate ?? 0;
+  const avgOdds = stats.avgOdds ?? 0;
+  const profit = stats.profit ?? 0;
+  return (
+    <Card variant="gradient" gradientColors={['#1a1a2e', '#16213e']} padding="md">
+      <View style={styles.statsContainer}>
+        <StatItem label="Win Rate" value={`${(winRate * 100).toFixed(0)}%`} color={Colors.accentPrimary} />
+        <View style={styles.statsDivider} />
+        <StatItem label="Avg Odds" value={avgOdds.toFixed(2)} />
+        <View style={styles.statsDivider} />
+        <StatItem label="ROI" value={`${profit > 0 ? '+' : ''}${(profit * 100).toFixed(0)}%`} color={profit > 0 ? Colors.accentPrimary : Colors.error} />
+      </View>
+    </Card>
+  );
+};
 
 const StatItem: React.FC<{ label: string; value: string; color?: string }> = ({ label, value, color }) => (
   <View style={styles.statItem}>

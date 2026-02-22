@@ -96,7 +96,7 @@ export function TicketBuilder({ onSave }: TicketBuilderProps) {
       <View style={styles.summary}>
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Cote totale</Text>
-          <Text style={styles.summaryValue}>{totalOdds.toFixed(2)}</Text>
+          <Text style={styles.summaryValue}>{(totalOdds ?? 0).toFixed(2)}</Text>
         </View>
 
         <View style={styles.stakeRow}>
@@ -122,7 +122,7 @@ export function TicketBuilder({ onSave }: TicketBuilderProps) {
 
         <View style={styles.summaryRow}>
           <Text style={styles.potentialLabel}>Gain potentiel</Text>
-          <Text style={styles.potentialValue}>{potentialWin.toFixed(2)}€</Text>
+          <Text style={styles.potentialValue}>{(potentialWin ?? 0).toFixed(2)}€</Text>
         </View>
       </View>
 
